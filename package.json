@@ -1,0 +1,33 @@
+{
+  "name": "shopnow",
+  "version": "1.0.0",
+  "description": "an ecommerce webiste app",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "server": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/graphica99/react-ecommerce-backend.git"
+  },
+  "author": "Mends Albert",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/graphica99/react-ecommerce-backend/issues"
+  },
+  "homepage": "https://github.com/graphica99/react-ecommerce-backend#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "config": "^3.3.3",
+    "express": "^4.17.1",
+    "express-validator": "^6.9.0",
+    "install": "^0.13.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.11.8",
+    "mysql2": "^2.2.5",
+    "nanoid": "^3.1.20",
+    "nodemon": "^2.0.6",
+    "npm": "^6.14.10"
+  }
+}
