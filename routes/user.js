@@ -9,7 +9,6 @@ const {
   userSignInValidator,
   userForgetPassword,
 } = require("../validator/user");
-const { route } = require("./auth");
 
 //@route -- POST api/user
 //@desc -- Register a user
@@ -26,4 +25,5 @@ router.post(
   runValidation,
   forgetPasswordController
 );
+
 module.exports = router;

@@ -17,6 +17,9 @@ const UserSchema = mongoose.Schema({
   token: {
     type: String,
   },
+  isAdmin: {
+    type: Boolean,
+  },
 });
 
 module.exports = mongoose.model("User", UserSchema);
