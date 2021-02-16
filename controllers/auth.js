@@ -8,13 +8,19 @@ exports.userLogInController = async (req, res) => {
   try {
     const { email, password } = req.body;
     let user = await User.findOne({ email });
+    if (!user) {
+      const error = new Error("A user with this email doesnt exist");
+      error.statusCode = 500;
+      return error;
+    }
     if (user) {
       const isMatch = await bcrypt.compare(password, user.password);
       if (!isMatch) {
-        res.json({ msg: "Password of email is incorrect" });
+        const error = new Error("password or email is incorrect");
+        res.json({ msg: "Password or email is incorrect" });
+        throw error;
       }
     }
-
     //payload for jwt (user_id)
     const payLoad = {
       user: {
@@ -31,8 +37,13 @@ exports.userLogInController = async (req, res) => {
         res.status(200).json({ token });
       }
     );
+    return;
   } catch (error) {
-    res.status(400).json({ msg: error });
+    res.status(500).json({ msg: error });
+    if (!error.statusCode) {
+      error.statusCode = 500;
+    }
+    return error;
   }
 };
 

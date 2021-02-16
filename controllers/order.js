@@ -1,6 +1,3 @@
-//adding an order
-//date,productsIds,totalPrice,paid,userId
-const { find } = require("../models/Order");
 const Order = require("../models/Order");
 
 exports.addOrderController = async (req, res) => {

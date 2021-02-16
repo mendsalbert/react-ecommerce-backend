@@ -17,7 +17,6 @@ exports.editTagController = async (req, res) => {
   try {
     const { tag } = req.body;
     const tagId = req.params.id;
-
     const editedTag = await Tag.findByIdAndUpdate(tagId, {
       tag: tag,
     });

@@ -1,8 +1,13 @@
+//watch these next
+//!! MERN Stack Front To Back Full Stack React, Redux & Node.js
+//!C:\Users\Albert\Downloads\UDEMY COURSES\MERN React Node Next.js Multi User SEO Blogging Platform
+
 const express = require("express");
 const app = express();
 const path = require("path");
 const expressUpload = require("express-fileupload");
 const connectDB = require("./config/db");
+
 //@cart related routes
 const cartRoute = require("./routes/cart");
 

@@ -30,6 +30,9 @@ const ProductSchema = mongoose.Schema({
   isApproved: {
     type: String,
   },
+  quantity: {
+    type: Number,
+  },
 });
 
 module.exports = mongoose.model("Product", ProductSchema);
