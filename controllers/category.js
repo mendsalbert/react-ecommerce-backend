@@ -36,7 +36,6 @@ exports.editCategoryController = async (req, res) => {
 exports.allCategoryController = async (req, res) => {
   try {
     let allCategory = await Category.find({});
-
     //smart display for front End
     const smartDisplay = () => {
       for (var i = 0; i < allCategory.length; i++) {
