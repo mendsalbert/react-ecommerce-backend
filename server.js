@@ -30,6 +30,7 @@ const authRoute = require("./routes/auth");
 const productRoute = require("./routes/product");
 
 //init middleware
+
 app.use(cors());
 app.use(express.json());
 app.use(expressUpload({ useTempFiles: true }));
