@@ -3,9 +3,9 @@ const router = express.Router();
 const { authenticated } = require("../middlewares/authenticate");
 const {
   addCategoryController,
-  removeCategoryController,
   editCategoryController,
   allCategoryController,
+  deleteCategoryController,
 } = require("../controllers/category");
 
 const { runValidation } = require("../validator/index");
@@ -24,7 +24,7 @@ router.post(
 
 //@route -- POST api/category/edit-category/id
 //@desc -- edit a category
-//@access -- public
+//@access -- private
 router.post(
   "/edit-category/:id",
   addCategoryValidation,
@@ -32,6 +32,11 @@ router.post(
   authenticated,
   editCategoryController
 );
+
+//@route -- POST api/category/delete-category/id
+//@desc -- delete a category
+//@access -- public
+router.delete("/delete-category/:id", authenticated, deleteCategoryController);
 
 //@route -- POST api/category/all-category
 //@desc -- list all items in a category

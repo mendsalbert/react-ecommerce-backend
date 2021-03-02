@@ -2,12 +2,10 @@ const Category = require("../models/Category");
 
 exports.addCategoryController = async (req, res) => {
   try {
-    const { category } = req.body;
-    //##subcategories should be transformed into an array at the front end
-    const subCategory = ["t-shirt", "top", "shorts"];
+    const { category, subCategory } = req.body;
     var cat = new Category({
       category: category,
-      subCategory: subCategory,
+      subCategory: subCategory.split(","),
     });
     var savedCategory = await cat.save();
     res.json(savedCategory);
@@ -18,15 +16,13 @@ exports.addCategoryController = async (req, res) => {
 
 exports.editCategoryController = async (req, res) => {
   try {
-    const { category } = req.body;
-    const productId = req.params.id;
+    const { category, subCategory } = req.body;
+    const categoryId = req.params.id;
     //##subcategories should be transformed into an array at the front end
-    const subCategory = ["t-shirt", "top", "shorts"];
-    const editedCategory = await Category.findByIdAndUpdate(productId, {
+    const editedCategory = await Category.findByIdAndUpdate(categoryId, {
       category: category,
-      subCategory: subCategory,
+      subCategory: subCategory.split(","),
     });
-
     res.json(editedCategory);
   } catch (error) {
     res.json(error);
@@ -47,6 +43,15 @@ exports.allCategoryController = async (req, res) => {
     };
 
     res.json(allCategory);
+  } catch (error) {
+    res.json(error);
+  }
+};
+
+exports.deleteCategoryController = async (req, res) => {
+  try {
+    const categoryId = req.params.id;
+    const deleteCategory = await Category.findByIdAndRemove(categoryId);
   } catch (error) {
     res.json(error);
   }
