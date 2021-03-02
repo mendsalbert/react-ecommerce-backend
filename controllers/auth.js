@@ -31,7 +31,7 @@ exports.userLogInController = async (req, res) => {
     jwt.sign(
       payLoad,
       config.get("jwtSecret"),
-      { expiresIn: 360000 },
+      // { expiresIn: 360000 },
       (err, token) => {
         if (err) throw err;
         res.status(200).json({ token });
