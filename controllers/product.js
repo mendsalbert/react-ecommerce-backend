@@ -98,7 +98,6 @@ exports.addProductController = async (req, res, next) => {
         let savedProduct = await product.save();
         res.json(savedProduct);
       };
-
       if (typeof files.image === "object") {
         saveProduct();
       }
@@ -110,7 +109,6 @@ exports.addProductController = async (req, res, next) => {
     });
   } catch (error) {
     res.json(error);
-    console.log(error);
   }
 };
 

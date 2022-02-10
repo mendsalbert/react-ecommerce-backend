@@ -1,3 +1,4 @@
+const { json } = require("express");
 const Category = require("../models/Category");
 
 exports.addCategoryController = async (req, res) => {
@@ -14,6 +15,20 @@ exports.addCategoryController = async (req, res) => {
   }
 };
 
+exports.isCategoryExist = async (req, res) => {
+  try {
+    const { category } = req.body;
+    const categoryToLowerCase = category.toLowerCase();
+    const cate = await Category.find({ category: categoryToLowerCase });
+    if (cate.length > 0) {
+      return res.json(true);
+    } else {
+      return res.json(false);
+    }
+  } catch (error) {
+    res.json(error);
+  }
+};
 exports.editCategoryController = async (req, res) => {
   try {
     const { category, subCategory } = req.body;

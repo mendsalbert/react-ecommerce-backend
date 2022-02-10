@@ -6,8 +6,8 @@ const {
   editCategoryController,
   allCategoryController,
   deleteCategoryController,
+  isCategoryExist,
 } = require("../controllers/category");
-
 const { runValidation } = require("../validator/index");
 const { addCategoryValidation } = require("../validator/category");
 
@@ -21,6 +21,11 @@ router.post(
   authenticated,
   addCategoryController
 );
+
+//@route -- POST api/category/isCategoryExist
+//@desc -- check if category exist
+//@access -- private
+router.post("/isCategoryExist", authenticated, isCategoryExist);
 
 //@route -- POST api/category/edit-category/id
 //@desc -- edit a category

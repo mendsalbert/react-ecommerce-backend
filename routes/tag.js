@@ -5,6 +5,7 @@ const {
   editTagController,
   allTagController,
   deleteTagController,
+  isTagExist,
 } = require("../controllers/tag");
 const { authenticated } = require("../middlewares/authenticate");
 const { runValidation } = require("../validator/index");
@@ -19,6 +20,17 @@ router.post(
   runValidation,
   authenticated,
   addTagController
+);
+
+//@route -- POST api/tag/isTagExist
+//@desc -- check if tag exist
+//@access --- private
+router.post(
+  "/isTagExist",
+  addTagValidation,
+  runValidation,
+  authenticated,
+  isTagExist
 );
 
 //@route -- POST api/tag/edit-tag
