@@ -15,11 +15,10 @@ const {
 //@route -- POST api/product/add-product
 //@desc -- add a product
 //@access -- Public
-
 router.post(
   "/add-product",
-  // addProductValidation,
-  // runValidation,
+  addProductValidation,
+  runValidation,
   authenticated,
   addProductController
 );

@@ -16,7 +16,22 @@ exports.addTagController = async (req, res, next) => {
     }
   } catch (error) {
     console.log(error);
-    res.status(500).send("Server Error");
+    res.status(500).json({ msg: "Server Error" });
+  }
+};
+
+exports.isTagExist = async (req, res) => {
+  try {
+    const { tag } = req.body;
+    var tagToLowerCase = tag.toLowerCase();
+    var tagExist = await Tag.find({ tag: tagToLowerCase });
+    if (tagExist.length > 0) {
+      return res.json(true);
+    } else {
+      return res.json(false);
+    }
+  } catch (error) {
+    res.status(500).json({ msg: "Server Error" });
   }
 };
 

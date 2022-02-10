@@ -15,6 +15,7 @@ const {
 //@access -- Public
 
 router.post("/", userSignInValidator, runValidation, registerUserController);
+// router.post("/", registerUserController);
 //@route -- POST api/user/forget-password
 //@desc -- Forget password of a user
 //@access -- Public

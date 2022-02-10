@@ -8,6 +8,7 @@ const { nanoid } = require("nanoid");
 exports.registerUserController = async (req, res) => {
   try {
     const { name, email, password } = req.body;
+    console.log(req.body);
     let user = await User.findOne({ email });
     if (user) {
       res
@@ -44,7 +45,7 @@ exports.registerUserController = async (req, res) => {
         res.json({ token });
       }
     );
-    // res.status(200).json({ user: savedUser });
+    res.status(200).json({ user: savedUser });
   } catch (error) {
     res.status(400).json({ msg: error });
   }

@@ -32,7 +32,7 @@ const productRoute = require("./routes/product");
 
 //init middleware
 app.use(cors());
-// app.use(express.json());
+app.use(express.json());
 // app.use(expressUpload({ useTempFiles: true }));
 app.use(express.static(path.join(__dirname, "asset")));
 
