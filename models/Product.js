@@ -18,6 +18,9 @@ const ProductSchema = mongoose.Schema({
   rating: {
     type: String,
   },
+  status: {
+    type: String,
+  },
   price: {
     type: String,
   },
