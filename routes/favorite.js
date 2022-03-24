@@ -5,6 +5,7 @@ const {
   addFavoriteController,
   removeFavoriteController,
   allFavoriteController,
+  getUserFavourite,
 } = require("../controllers/favorite");
 
 //@route -- POST api/favorite/add-favorite/pid
