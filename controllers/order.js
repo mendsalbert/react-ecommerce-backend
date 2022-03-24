@@ -24,6 +24,16 @@ exports.addOrderController = async (req, res) => {
   }
 };
 
+exports.getUserOrders = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const orders = await Order.find({ userId: userId });
+    res.json(orders);
+  } catch (error) {
+    res.json(error);
+  }
+};
+
 exports.allOrderController = async (req, res) => {
   try {
     const orders = await Order.find({});
