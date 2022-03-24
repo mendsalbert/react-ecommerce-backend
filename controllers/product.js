@@ -13,14 +13,14 @@ exports.addProductController = async (req, res, next) => {
         return;
       }
       const { name, category, description, price, quantity } = fields;
-      console.log(fields);
+      console.log(files.image.path);
       const saveProduct = async () => {
         if (files.image.size > 2000000) {
           return res.json({ msg: "Please select file sizes less than 4MB" });
         }
-        var image = fs.readFileSync(files.image.filepath);
+        var image = fs.readFileSync(files.image.path);
         var encImage = new Buffer(image).toString("base64");
-
+        console.log(encImage);
         const product = new Product({
           name,
           category,

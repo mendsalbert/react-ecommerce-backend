@@ -18,7 +18,7 @@ const {
 router.post(
   "/add-product",
   addProductValidation,
-  runValidation,
+  // runValidation,
   // authenticated,
   addProductController
 );
