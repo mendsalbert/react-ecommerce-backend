@@ -13,6 +13,7 @@ exports.addProductController = async (req, res, next) => {
         return;
       }
       const { name, category, description, price, quantity } = fields;
+      console.log(fields);
       const saveProduct = async () => {
         if (files.image.size > 2000000) {
           return res.json({ msg: "Please select file sizes less than 4MB" });
