@@ -25,6 +25,16 @@ exports.removeFavoriteController = async (req, res) => {
   }
 };
 
+exports.getUserFavourite = async (req, res) => {
+  try {
+    let userId = req.user.id;
+    const allFavorite = await Favorite.find({ userId: userId });
+    res.json(allFavorite);
+  } catch (error) {
+    res.json(error);
+  }
+};
+
 exports.allFavoriteController = async (req, res) => {
   try {
     const allFavorite = await Favorite.find({});
