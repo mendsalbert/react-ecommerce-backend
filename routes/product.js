@@ -42,5 +42,9 @@ router.post("/delete-product/:id", authenticated, deleteProductController);
 //@route -- GET api/product/all-product
 //@desc -- get all products
 //@access -- Public
-router.get("/all-products", authenticated, allProductsController);
+router.get(
+  "/all-products",
+  //  authenticated,
+  allProductsController
+);
 module.exports = router;
