@@ -19,7 +19,7 @@ router.post(
   "/add-product",
   addProductValidation,
   runValidation,
-  authenticated,
+  // authenticated,
   addProductController
 );
 

@@ -14,7 +14,7 @@ exports.addProductController = async (req, res, next) => {
       }
       const { name, category, tag, price, quantity } = fields;
       const saveProduct = async () => {
-        let postedBy = req.user.id;
+        // let postedBy = req.user.id;
         let image = Math.random(0, 1) + files.image.name;
         // console.log(image);
         if (files.image.size > 4000000) {
@@ -24,7 +24,7 @@ exports.addProductController = async (req, res, next) => {
           name,
           category,
           tag,
-          postedBy,
+          postedBy: "admin",
           image,
           price,
           quantity,
@@ -70,7 +70,7 @@ exports.addProductController = async (req, res, next) => {
           name,
           category,
           tag,
-          postedBy,
+          postedBy: admin,
           image,
           price,
           quantity,
