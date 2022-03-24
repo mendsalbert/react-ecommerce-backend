@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+const Schema = mongoose.Schema;
 const UserSchema = mongoose.Schema({
   name: {
     type: String,
@@ -20,6 +20,8 @@ const UserSchema = mongoose.Schema({
   isAdmin: {
     type: Boolean,
   },
+  order: [{ type: Schema.Types.ObjectId, ref: "Order" }],
+  favorite: [{ type: Schema.Types.ObjectId, ref: "Favorite" }],
 });
 
 module.exports = mongoose.model("User", UserSchema);
