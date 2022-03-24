@@ -22,4 +22,5 @@ Router.post("/delete-favorite/:id", authenticated, removeFavoriteController);
 //@access -- public
 Router.get("/all-favorite", allFavoriteController);
 
+Router.get("/user-favourites", authenticated, getUserFavourite);
 module.exports = Router;
