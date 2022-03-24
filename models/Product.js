@@ -9,7 +9,7 @@ const ProductSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  tag: {
+  description: {
     type: String,
     required: true,
   },

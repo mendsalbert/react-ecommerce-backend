@@ -12,100 +12,31 @@ exports.addProductController = async (req, res, next) => {
         next(err);
         return;
       }
-      const { name, category, tag, price, quantity } = fields;
+      const { name, category, description, price, quantity } = fields;
       const saveProduct = async () => {
-        // let postedBy = req.user.id;
-        let image = Math.random(0, 1) + files.image.name;
-        // console.log(image);
-        if (files.image.size > 4000000) {
+        if (files.image.size > 2000000) {
           return res.json({ msg: "Please select file sizes less than 4MB" });
         }
+        var image = fs.readFileSync(files.image.filepath);
+        var encImage = new Buffer(image).toString("base64");
+
         const product = new Product({
           name,
           category,
-          tag,
+          description,
           postedBy: "admin",
-          image,
+          image: encImage,
           price,
           quantity,
         });
 
-        const pathToNewDestination = path.join("assets/productImages", image);
-        await fs.copyFile(
-          files.image.path,
-          pathToNewDestination,
-          function (err) {
-            if (err) {
-              throw err;
-            } else {
-              console.log("Successfully copied and moved the file!");
-            }
-          }
-        );
-
         let savedProduct = await product.save();
         res.json(savedProduct);
       };
-      const saveProducts = async () => {
-        let arrLength = files.image.length;
-        if (arrLength > 3) {
-          return res.json({
-            msg: " Please You can only upload 3 pictures of a product",
-          });
-        }
-        let multImages = [];
-        let totalSizes = 0;
 
-        for (let i = 0; i < arrLength; i++) {
-          multImages.push(Math.random(0, 1) + files.image[i].name);
-          totalSizes = totalSizes + files.image[i].size;
-        }
-        if (totalSizes > 4000000) {
-          res.json({ msg: "Please select file sizes less than 4MB" });
-        }
-        // console.log(totalSizes);
-        let postedBy = req.user.id;
-        let image = multImages;
-        const product = new Product({
-          name,
-          category,
-          tag,
-          postedBy: admin,
-          image,
-          price,
-          quantity,
-        });
-
-        for (let i = 0; i < arrLength; i++) {
-          const pathToNewDestination = path.join(
-            "assets/productImages",
-            image[i]
-          );
-          await fs.copyFile(
-            files.image[i].path,
-            pathToNewDestination,
-            function (err) {
-              if (err) {
-                //   throw err;
-                console.log(err);
-              } else {
-                console.log("Successfully copied and moved the files!");
-              }
-            }
-          );
-        }
-
-        let savedProduct = await product.save();
-        res.json(savedProduct);
-      };
       if (typeof files.image === "object") {
         saveProduct();
       }
-      if (files.image.length) {
-        saveProducts();
-      }
-      // console.log(files);
-      // console.log(fields, files);
     });
   } catch (error) {
     res.json(error);
