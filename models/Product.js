@@ -17,10 +17,7 @@ const ProductSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
-  image: {
-    type: Array,
-    required: true,
-  },
+  image: { type: Buffer, type: String },
   rating: {
     type: String,
   },
