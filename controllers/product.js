@@ -57,32 +57,34 @@ exports.editProductController = async (req, res) => {
       const { name, category, description, price, status, quantity } = fields;
       // console.log(files.image.path);
       const saveProduct = async () => {
-        if (files.image.size > 2000000) {
-          return res.json({ msg: "Please select file sizes less than 4MB" });
+        if (typeof files.image === "object") {
+          if (files.image.size > 2000000) {
+            return res.json({ msg: "Please select file sizes less than 4MB" });
+          }
+          var image = fs.readFileSync(files.image.path);
+          encImage = new Buffer(image).toString("base64");
+        } else {
+          let product = await Product.findByIdAndUpdate(id, {
+            name,
+            category,
+            description,
+            image: typeof files.image === "object" ? encImage : "",
+            price,
+            status,
+            quantity,
+          });
+
+          let savedProduct = await product.save();
+          res.json(savedProduct);
         }
-        var image = fs.readFileSync(files.image.path);
-        var encImage = new Buffer(image).toString("base64");
-
-        let product = await Product.findByIdAndUpdate(id, {
-          name,
-          category,
-          description,
-          image: encImage,
-          price,
-          status,
-          quantity,
-        });
-
-        let savedProduct = await product.save();
-        res.json(savedProduct);
       };
 
-      if (typeof files.image === "object") {
-        saveProduct();
-      }
+      saveProduct();
+      // if (typeof files.image === "object") {
+      // }
     });
 
-    res.json(await Product.findById(id));
+    res.json("success");
   } catch (error) {
     res.json(error);
     console.log(error);

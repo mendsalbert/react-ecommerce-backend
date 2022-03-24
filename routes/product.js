@@ -29,8 +29,8 @@ router.post(
 router.post(
   "/edit-product/:id",
   addProductValidation,
-  runValidation,
-  authenticated,
+  // runValidation,
+  // authenticated,
   editProductController
 );
 
