@@ -12,7 +12,7 @@ exports.addProductController = async (req, res, next) => {
         next(err);
         return;
       }
-      const { name, category, description, price, quantity } = fields;
+      const { name, category, description, price, status, quantity } = fields;
       // console.log(files.image.path);
       const saveProduct = async () => {
         if (files.image.size > 2000000) {
@@ -27,6 +27,7 @@ exports.addProductController = async (req, res, next) => {
           description,
           image: encImage,
           price,
+          status,
           quantity,
         });
 
