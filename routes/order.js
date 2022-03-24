@@ -3,6 +3,7 @@ const router = express.Router();
 const {
   addOrderController,
   allOrderController,
+  getUserOrders,
 } = require("../controllers/order");
 const { authenticated } = require("../middlewares/authenticate");
 //!!delete order will be added later
@@ -16,4 +17,6 @@ router.post("/add-order", authenticated, addOrderController);
 //@desc -- view all orders
 //@access -- public
 router.get("/all-orders", authenticated, allOrderController);
+
+router.get("/user-orders", authenticated, getUserOrders);
 module.exports = router;
