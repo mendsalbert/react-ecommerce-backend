@@ -24,7 +24,7 @@ exports.addProductController = async (req, res, next) => {
           name,
           category,
           description,
-          postedBy: "admin",
+
           image: encImage,
           price,
           quantity,
