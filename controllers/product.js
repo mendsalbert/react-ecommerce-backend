@@ -46,51 +46,40 @@ exports.addProductController = async (req, res, next) => {
 
 exports.editProductController = async (req, res) => {
   try {
-    let image = [];
-    const id = req.params.id;
-    const { name, category, tag } = req.body;
-    let postedBy = req.user.id;
-    let oldProduct = await Product.findById(id);
-    if (req.files) {
-      for (var i = 0; i < oldProduct.image.length; i++) {
-        image.push(Math.random(0, 1) + req.files.image[i].name);
-        await fs.unlink(
-          "assets/productImages/" + oldProduct.image[i],
-          (err) => {
-            console.log("deleted old product and added a new one");
-          }
-        );
-
-        if (req.files.image[i].size > 4000000) {
-          res.json({ msg: "Please select file sizes less than 4MB" });
+    const form = formidable({ multiples: true });
+    form.parse(req, (err, fields, files) => {
+      if (err) {
+        console.log(err);
+        next(err);
+        return;
+      }
+      const id = req.params.id;
+      const { name, category, description, price, status, quantity } = fields;
+      // console.log(files.image.path);
+      const saveProduct = async () => {
+        if (files.image.size > 2000000) {
+          return res.json({ msg: "Please select file sizes less than 4MB" });
         }
-        const pathToNewDestination = path.join(
-          "assets/productImages",
-          image[i]
-        );
-        await fs.copyFile(
-          req.files.image[i].tempFilePath,
-          pathToNewDestination,
-          function (err) {
-            if (err) {
-              throw err;
-            } else {
-              console.log("Successfully copied and moved the file!");
-            }
-          }
-        );
+        var image = fs.readFileSync(files.image.path);
+        var encImage = new Buffer(image).toString("base64");
+
+        let product = await Product.findByIdAndUpdate(id, {
+          name,
+          category,
+          description,
+          image: encImage,
+          price,
+          status,
+          quantity,
+        });
+
+        let savedProduct = await product.save();
+        res.json(savedProduct);
+      };
+
+      if (typeof files.image === "object") {
+        saveProduct();
       }
-    } else {
-      for (var i = 0; i < oldProduct.image.length; i++) {
-        image.push(oldProduct.image[i]);
-      }
-    }
-    let product = await Product.findByIdAndUpdate(id, {
-      name: name,
-      category: category,
-      tag: tag,
-      postedBy: postedBy,
-      image: image,
     });
 
     res.json(await Product.findById(id));
