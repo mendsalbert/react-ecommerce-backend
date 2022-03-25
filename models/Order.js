@@ -8,6 +8,7 @@ const OrderSchema = mongoose.Schema({
     type: Array,
     ref: "Product",
   },
+
   totalPrice: {
     type: Number,
   },
