@@ -20,6 +20,6 @@ Router.post("/delete-cart/:id", authenticated, removeCartController);
 //@route -- POST api/cart/all-cart
 //@desc -- list all items in a cart
 //@access -- public
-Router.get("/all-cart", allCartController);
+Router.get("/all-cart", authenticated, allCartController);
 
 module.exports = Router;
