@@ -1,11 +1,12 @@
+const mongoose = require("mongoose");
 const Cart = require("../models/Cart");
 exports.addCartController = async (req, res) => {
   try {
     let p_id = req.params.pid;
     let u_id = req.user.id;
     let cart = new Cart({
-      productId: p_id,
-      userId: u_id,
+      productId: mongoose.Types.ObjectId(p_id),
+      userId: mongoose.Types.ObjectId(u_id),
     });
 
     var savedCart = await cart.save();
