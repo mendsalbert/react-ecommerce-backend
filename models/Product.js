@@ -15,6 +15,7 @@ const ProductSchema = mongoose.Schema({
   },
 
   image: { type: Buffer, type: String },
+
   rating: {
     type: String,
   },

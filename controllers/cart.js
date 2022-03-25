@@ -34,7 +34,7 @@ exports.removeCartController = async (req, res) => {
 exports.allCartController = async (req, res) => {
   try {
     let u_id = req.user.id;
-    const allCart = await Cart.find({});
+    const allCart = await Cart.find({}).populate("product", "name").exec();
     res.json(allCart);
   } catch (error) {
     res.json(error);
