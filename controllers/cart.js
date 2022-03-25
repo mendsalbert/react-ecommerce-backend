@@ -7,7 +7,10 @@ exports.addCartController = async (req, res) => {
     let u_id = req.user.id;
 
     isCartExist = await Cart.find({ product: p_id });
-    console.log(isCartExist);
+    // console.log(isCartExist);
+    if (isCartExist) {
+      return res.status(500).json("Cart has been addedd already");
+    }
     let cart = new Cart({
       product: mongoose.Types.ObjectId(p_id),
       user: mongoose.Types.ObjectId(u_id),
