@@ -1,11 +1,13 @@
 const mongoose = require("mongoose");
 const Cart = require("../models/Cart");
+const Product = require("../models/Product");
 exports.addCartController = async (req, res) => {
   try {
     let p_id = req.params.pid;
     let u_id = req.user.id;
-    console.log(p_id);
-    console.log(mongoose.Types.ObjectId(p_id));
+    // console.log(p_id);
+    // let product_id = mongoose.Types.ObjectId(p_id);
+    // console.log(product_id);
     // isCartExist =
     let cart = new Cart({
       productId: mongoose.Types.ObjectId(p_id),
@@ -32,10 +34,7 @@ exports.removeCartController = async (req, res) => {
 exports.allCartController = async (req, res) => {
   try {
     let u_id = req.user.id;
-    const allCart = await Cart.find({ userId: u_id }).populate(
-      "products",
-      "name"
-    );
+    const allCart = await Cart.find({}).populate("products", "name").exec();
     res.json(allCart);
   } catch (error) {
     res.json(error);
