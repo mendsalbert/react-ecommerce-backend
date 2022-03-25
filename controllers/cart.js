@@ -4,6 +4,9 @@ exports.addCartController = async (req, res) => {
   try {
     let p_id = req.params.pid;
     let u_id = req.user.id;
+    console.log(p_id);
+    console.log(mongoose.Types.ObjectId(p_id));
+    // isCartExist =
     let cart = new Cart({
       productId: mongoose.Types.ObjectId(p_id),
       userId: mongoose.Types.ObjectId(u_id),
