@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
-
+const Schema = mongoose.Schema;
 const OrderSchema = mongoose.Schema({
   date: {
     type: Date,
   },
-  productIds: {
+  orders: {
     type: Array,
     ref: "Product",
   },
@@ -18,10 +18,12 @@ const OrderSchema = mongoose.Schema({
   status: {
     type: String,
   },
-  userId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-  },
+  user: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
 });
 
 module.exports = mongoose.model("Order", OrderSchema);

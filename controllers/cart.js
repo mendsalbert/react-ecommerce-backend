@@ -6,9 +6,9 @@ exports.addCartController = async (req, res) => {
     let p_id = req.params.pid;
     let u_id = req.user.id;
 
-    isCartExist = await Cart.find({ product: p_id });
+    isCartExist = await Cart.find({ product: p_id, user: u_id });
     // console.log(isCartExist);
-    if (isCartExist) {
+    if (isCartExist.length > 0) {
       return res.status(500).json("Cart has been addedd already");
     }
     let cart = new Cart({
@@ -36,7 +36,7 @@ exports.removeCartController = async (req, res) => {
 exports.allCartController = async (req, res) => {
   try {
     let u_id = req.user.id;
-    const allCart = await Cart.find({})
+    const allCart = await Cart.find({ user: u_id })
       .populate("product")
       .populate("user")
       .exec();
