@@ -17,6 +17,12 @@ const UserSchema = mongoose.Schema({
   token: {
     type: String,
   },
+  phone: {
+    type: String,
+  },
+  country: {
+    type: String,
+  },
   isAdmin: {
     type: Boolean,
   },
