@@ -25,11 +25,18 @@ const ProductSchema = mongoose.Schema({
   price: {
     type: String,
   },
+  tempQuantity: {
+    type: Number,
+  },
   isApproved: {
     type: String,
   },
   quantity: {
     type: Number,
+  },
+  tempQuantity: {
+    type: Number,
+    default: 1,
   },
 });
 
