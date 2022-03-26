@@ -3,10 +3,9 @@ const Order = require("../models/Order");
 exports.addOrderController = async (req, res) => {
   try {
     //product ids must be transformed into array at the front end and send it back here
-    const { orders, totalPrice } = req.body;
+    const { orders, totalPrice, deliverymode, store } = req.body;
     const userId = req.user.id;
-    // console.log(totalPrice);
-    // console.log(orders[0].product);
+
     const date = Date.now();
     const order = new Order({
       date: date,
@@ -14,6 +13,8 @@ exports.addOrderController = async (req, res) => {
       totalPrice: totalPrice,
       paid: true,
       status: "pending",
+      deliverymode: deliverymode,
+      store: store,
       user: userId,
     });
 

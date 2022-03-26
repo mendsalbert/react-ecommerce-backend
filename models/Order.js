@@ -18,6 +18,12 @@ const OrderSchema = mongoose.Schema({
   status: {
     type: String,
   },
+  deliverymode: {
+    type: String,
+  },
+  store: {
+    type: String,
+  },
   user: [
     {
       type: Schema.Types.ObjectId,
