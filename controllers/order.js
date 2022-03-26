@@ -3,7 +3,15 @@ const Order = require("../models/Order");
 exports.addOrderController = async (req, res) => {
   try {
     //product ids must be transformed into array at the front end and send it back here
-    const { orders, totalPrice, deliverymode, store } = req.body;
+    const {
+      orders,
+      totalPrice,
+      deliverymode,
+      store,
+      phone,
+      digitaladdress,
+      country,
+    } = req.body;
     const userId = req.user.id;
 
     const date = Date.now();
@@ -15,7 +23,11 @@ exports.addOrderController = async (req, res) => {
       status: "pending",
       deliverymode: deliverymode,
       store: store,
+      phone,
+      digitaladdress,
+      country,
       user: userId,
+      paymentmode: "momo",
     });
 
     let savedOrder = await order.save();

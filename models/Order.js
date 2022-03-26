@@ -24,6 +24,18 @@ const OrderSchema = mongoose.Schema({
   store: {
     type: String,
   },
+  phone: {
+    type: String,
+  },
+  digitaladdress: {
+    type: String,
+  },
+  country: {
+    type: String,
+  },
+  paymentmode: {
+    type: String,
+  },
   user: [
     {
       type: Schema.Types.ObjectId,
