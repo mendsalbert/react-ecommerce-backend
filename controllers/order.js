@@ -3,6 +3,7 @@ const Order = require("../models/Order");
 exports.addOrderController = async (req, res) => {
   try {
     //product ids must be transformed into array at the front end and send it back here
+
     const {
       orders,
       totalPrice,

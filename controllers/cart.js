@@ -26,7 +26,9 @@ exports.addCartController = async (req, res) => {
 exports.removeCartController = async (req, res) => {
   try {
     const cart_id = req.params.id;
-    const removedCart = await Cart.findByIdAndRemove(cart_id);
+    let userid = req.user.id;
+    console.log(cart_id);
+    const removedCart = await Cart.deleteOne({ user: userid, _id: cart_id });
     res.json(removedCart);
   } catch (error) {
     res.json(error);
