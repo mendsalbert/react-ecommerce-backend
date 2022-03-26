@@ -1,13 +1,13 @@
 const Favorite = require("../models/Favorite");
 const mongoose = require("mongoose");
+
 exports.addFavoriteController = async (req, res) => {
   try {
     let p_id = req.params.pid;
     let u_id = req.user.id;
 
-    console.log(p_id);
-    isFavoriteExist = await Cart.find({ product: p_id, user: u_id });
-    // console.log(isFavoriteExist);
+    // console.log(p_id);
+    isFavoriteExist = await Favorite.find({ product: p_id, user: u_id });
     if (isFavoriteExist.length > 0) {
       return res.status(500).json("Favorite has been addedd already");
     }
@@ -27,8 +27,8 @@ exports.removeFavoriteController = async (req, res) => {
   try {
     const favorite_id = req.params.id;
     let userid = req.user.id;
-    // console.log(cart_id);
-    const removedFavorite = await Cart.deleteOne({
+
+    const removedFavorite = await Favorite.deleteOne({
       user: userid,
       _id: favorite_id,
     });
@@ -51,6 +51,7 @@ exports.getUserFavourite = async (req, res) => {
 exports.allFavoriteController = async (req, res) => {
   try {
     let u_id = req.user.id;
+    console.log(u_id);
     const allFavorite = await Favorite.find({ user: u_id })
       .populate("product")
       .populate("user")

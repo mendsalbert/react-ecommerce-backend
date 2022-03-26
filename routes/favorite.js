@@ -21,7 +21,7 @@ Router.post("/delete-favorite/:id", authenticated, removeFavoriteController);
 //@route -- POST api/favorite/all-favorite
 //@desc -- list all items in a favorite
 //@access -- public
-Router.get("/all-favorite", allFavoriteController);
+Router.get("/all-favorite", authenticated, allFavoriteController);
 
 Router.get("/user-favourites", authenticated, getUserFavourite);
 module.exports = Router;
