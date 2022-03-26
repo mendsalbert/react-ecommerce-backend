@@ -1,15 +1,23 @@
 const Favorite = require("../models/Favorite");
+const mongoose = require("mongoose");
 exports.addFavoriteController = async (req, res) => {
   try {
     let p_id = req.params.pid;
     let u_id = req.user.id;
+
+    console.log(p_id);
+    isFavoriteExist = await Cart.find({ product: p_id, user: u_id });
+    // console.log(isFavoriteExist);
+    if (isFavoriteExist.length > 0) {
+      return res.status(500).json("Favorite has been addedd already");
+    }
     let favorite = new Favorite({
-      productId: p_id,
-      userId: u_id,
+      product: mongoose.Types.ObjectId(p_id),
+      user: mongoose.Types.ObjectId(u_id),
     });
 
-    var savedFavorite = await favorite.save();
-    res.json(savedFavorite);
+    var savefavorite = await favorite.save();
+    res.json(savefavorite);
   } catch (error) {
     res.json(error);
   }
@@ -18,7 +26,12 @@ exports.addFavoriteController = async (req, res) => {
 exports.removeFavoriteController = async (req, res) => {
   try {
     const favorite_id = req.params.id;
-    const removedFavorite = await Favorite.findByIdAndRemove(favorite_id);
+    let userid = req.user.id;
+    // console.log(cart_id);
+    const removedFavorite = await Cart.deleteOne({
+      user: userid,
+      _id: favorite_id,
+    });
     res.json(removedFavorite);
   } catch (error) {
     res.json(error);
@@ -37,7 +50,11 @@ exports.getUserFavourite = async (req, res) => {
 
 exports.allFavoriteController = async (req, res) => {
   try {
-    const allFavorite = await Favorite.find({});
+    let u_id = req.user.id;
+    const allFavorite = await Favorite.find({ user: u_id })
+      .populate("product")
+      .populate("user")
+      .exec();
     res.json(allFavorite);
   } catch (error) {
     res.json(error);

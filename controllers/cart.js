@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Cart = require("../models/Cart");
-const Product = require("../models/Product");
+
 exports.addCartController = async (req, res) => {
   try {
     let p_id = req.params.pid;
