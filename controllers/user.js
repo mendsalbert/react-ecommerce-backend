@@ -7,7 +7,7 @@ const { nanoid } = require("nanoid");
 
 exports.registerUserController = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password, phone, country } = req.body;
     console.log(req.body);
     let user = await User.findOne({ email });
     if (user) {
@@ -20,6 +20,8 @@ exports.registerUserController = async (req, res) => {
       name,
       email,
       password,
+      phone,
+      country,
     });
 
     let salt = await bcrypt.genSalt(12);
