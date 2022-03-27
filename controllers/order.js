@@ -56,3 +56,19 @@ exports.allOrderController = async (req, res) => {
     res.json(error);
   }
 };
+
+exports.updateStatus = async (req, res) => {
+  try {
+    let status = req.params.id;
+    let orderId = req.params.id;
+
+    let updateStatus = await Order.findByIdAndUpdate(
+      { _id: orderId },
+      { status: status }
+    );
+
+    console.log(updateStatus);
+  } catch (error) {
+    res.json(error);
+  }
+};

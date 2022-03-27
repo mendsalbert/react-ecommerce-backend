@@ -4,6 +4,7 @@ const {
   addOrderController,
   allOrderController,
   getUserOrders,
+  updateStatus,
 } = require("../controllers/order");
 const { authenticated } = require("../middlewares/authenticate");
 //!!delete order will be added later
@@ -19,4 +20,6 @@ router.post("/add-order", authenticated, addOrderController);
 router.get("/all-orders", allOrderController);
 
 router.get("/user-orders", authenticated, getUserOrders);
+
+router.post("/update-status/:status/:id", updateStatus);
 module.exports = router;
