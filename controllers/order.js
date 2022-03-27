@@ -50,7 +50,7 @@ exports.getUserOrders = async (req, res) => {
 
 exports.allOrderController = async (req, res) => {
   try {
-    const orders = await Order.find({});
+    const orders = await Order.find({}).sort({ date: -1 });
     res.json(orders);
   } catch (error) {
     res.json(error);

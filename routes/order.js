@@ -16,7 +16,7 @@ router.post("/add-order", authenticated, addOrderController);
 //@route -- POST api/order/all-orders
 //@desc -- view all orders
 //@access -- public
-router.get("/all-orders", authenticated, allOrderController);
+router.get("/all-orders", allOrderController);
 
 router.get("/user-orders", authenticated, getUserOrders);
 module.exports = router;
