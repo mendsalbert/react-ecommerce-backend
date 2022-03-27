@@ -57,17 +57,34 @@ exports.allOrderController = async (req, res) => {
   }
 };
 
+exports.pendingOrderController = async (req, res) => {
+  try {
+    const orders = await Order.find({ status: "processing" }).sort({
+      date: -1,
+    });
+    res.json(orders);
+  } catch (error) {
+    res.json(error);
+  }
+};
 exports.updateStatus = async (req, res) => {
   try {
-    let status = req.params.id;
+    let status = req.params.status;
     let orderId = req.params.id;
 
-    let updateStatus = await Order.findByIdAndUpdate(
-      { _id: orderId },
-      { status: status }
-    );
+    // let updateStatus = await Order.find(
+    //   { _id: orderId }
+    //   // {
+    //   //   status: status,
+    //   // }
+    // );
+    const updateStatus = await Order.findByIdAndUpdate(orderId, {
+      status: status,
+    });
 
-    console.log(updateStatus);
+    res.json(updateStatus);
+
+    // console.log(updateStatus);
   } catch (error) {
     res.json(error);
   }

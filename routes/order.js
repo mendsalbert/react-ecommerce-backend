@@ -5,6 +5,7 @@ const {
   allOrderController,
   getUserOrders,
   updateStatus,
+  pendingOrderController,
 } = require("../controllers/order");
 const { authenticated } = require("../middlewares/authenticate");
 //!!delete order will be added later
@@ -18,6 +19,7 @@ router.post("/add-order", authenticated, addOrderController);
 //@desc -- view all orders
 //@access -- public
 router.get("/all-orders", allOrderController);
+router.get("/pending-orders", pendingOrderController);
 
 router.get("/user-orders", authenticated, getUserOrders);
 

@@ -3,6 +3,7 @@ const router = express.Router();
 const {
   registerUserController,
   forgetPasswordController,
+  getAllUsersController,
 } = require("../controllers/user");
 const { runValidation } = require("../validator/index");
 const {
@@ -15,6 +16,7 @@ const {
 //@access -- Public
 
 router.post("/", userSignInValidator, runValidation, registerUserController);
+router.get("/all-users", getAllUsersController);
 // router.post("/", registerUserController);
 //@route -- POST api/user/forget-password
 //@desc -- Forget password of a user

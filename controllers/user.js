@@ -77,3 +77,12 @@ exports.forgetPasswordController = async (req, res) => {
     res.json(error);
   }
 };
+
+exports.getAllUsersController = async (req, res) => {
+  try {
+    let allusers = await User.find({});
+    res.json(allusers);
+  } catch (error) {
+    res.json(error);
+  }
+};
