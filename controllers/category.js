@@ -3,10 +3,9 @@ const Category = require("../models/Category");
 
 exports.addCategoryController = async (req, res) => {
   try {
-    const { category, subCategory } = req.body;
+    const { category } = req.body;
     var cat = new Category({
       category: category,
-      subCategory: subCategory.split(","),
     });
     var savedCategory = await cat.save();
     res.json(savedCategory);
@@ -66,7 +65,9 @@ exports.allCategoryController = async (req, res) => {
 exports.deleteCategoryController = async (req, res) => {
   try {
     const categoryId = req.params.id;
+    console.log(categoryId);
     const deleteCategory = await Category.findByIdAndRemove(categoryId);
+    res.json(deleteCategory);
   } catch (error) {
     res.json(error);
   }

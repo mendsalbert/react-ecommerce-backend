@@ -14,13 +14,7 @@ const { addCategoryValidation } = require("../validator/category");
 //@route -- POST api/category/add-category
 //@desc -- add a product category
 //@access -- public
-router.post(
-  "/add-category/",
-  addCategoryValidation,
-  runValidation,
-  authenticated,
-  addCategoryController
-);
+router.post("/add-category/", addCategoryController);
 
 //@route -- POST api/category/isCategoryExist
 //@desc -- check if category exist
@@ -41,7 +35,7 @@ router.post(
 //@route -- POST api/category/delete-category/id
 //@desc -- delete a category
 //@access -- public
-router.delete("/delete-category/:id", authenticated, deleteCategoryController);
+router.post("/delete-category/:id", deleteCategoryController);
 
 //@route -- POST api/category/all-category
 //@desc -- list all items in a category
