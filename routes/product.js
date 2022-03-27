@@ -9,6 +9,7 @@ const {
   deleteProductController,
   allProductsController,
   searchProductController,
+  getProductController,
 } = require("../controllers/product");
 
 //!!FUTURE ROUTES ***** GET-SINGLE-PRODUCT
@@ -47,6 +48,12 @@ router.get(
   "/all-products",
   //  authenticated,
   allProductsController
+);
+
+router.get(
+  "/get-product/:id",
+  //  authenticated,
+  getProductController
 );
 
 router.post("/search-product/:search", searchProductController);

@@ -120,6 +120,18 @@ exports.allProductsController = async (req, res) => {
   }
 };
 
+exports.getProductController = async (req, res) => {
+  try {
+    // console.log("working");
+    let id = req.params.id;
+    let product = await Product.find({ _id: id });
+    res.json(product);
+    // console.log("product", product);
+  } catch (error) {
+    res.json(error);
+  }
+};
+
 exports.searchProductController = async (req, res) => {
   try {
     let searchQuery = req.params.search;
