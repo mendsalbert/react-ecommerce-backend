@@ -29,6 +29,7 @@ const authRoute = require("./routes/auth");
 
 //@product related routes
 const productRoute = require("./routes/product");
+const contactRoute = require("./routes/contact");
 
 //init middleware
 app.use(cors());
@@ -57,6 +58,9 @@ app.use("/api/order", orderRoute);
 
 //@tag router middleware
 app.use("/api/tag", tagRoute);
+
+//@contact router middleware
+app.use("/api/contact", contactRoute);
 
 // @home page
 app.use("/", (req, res) => {

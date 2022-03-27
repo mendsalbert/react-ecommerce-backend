@@ -51,7 +51,7 @@ exports.getUserFavourite = async (req, res) => {
 exports.allFavoriteController = async (req, res) => {
   try {
     let u_id = req.user.id;
-    console.log(u_id);
+    // console.log(u_id);
     const allFavorite = await Favorite.find({ user: u_id })
       .populate("product")
       .populate("user")

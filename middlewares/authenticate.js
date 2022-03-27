@@ -13,7 +13,7 @@ exports.authenticated = (req, res, next) => {
     req.user = decoded.user;
     next();
   } catch (error) {
-    res.status(401).json({ msg: "Token is not valid" });
+    return res.status(500).json("Authentication is required");
   }
 };
 
