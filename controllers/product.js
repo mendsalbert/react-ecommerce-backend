@@ -119,3 +119,13 @@ exports.allProductsController = async (req, res) => {
     res.json(error);
   }
 };
+
+exports.searchProductController = async (req, res) => {
+  try {
+    let searchQuery = req.params.search;
+    let allProduct = await Product.find({ $text: { $search: searchQuery } });
+    res.json(allProduct);
+  } catch (error) {
+    res.json(error);
+  }
+};
