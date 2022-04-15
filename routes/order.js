@@ -6,6 +6,8 @@ const {
   getUserOrders,
   updateStatus,
   pendingOrderController,
+  updateFeedbackController,
+  updateRefundController,
 } = require("../controllers/order");
 const { authenticated } = require("../middlewares/authenticate");
 //!!delete order will be added later
@@ -24,4 +26,8 @@ router.get("/pending-orders", pendingOrderController);
 router.get("/user-orders", authenticated, getUserOrders);
 
 router.post("/update-status/:status/:id", updateStatus);
+
+router.post("/update-feedback/:id", updateFeedbackController);
+router.post("/update-refund/:id", updateRefundController);
+
 module.exports = router;
