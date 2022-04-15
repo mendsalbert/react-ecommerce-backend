@@ -95,3 +95,17 @@ exports.updateFeedbackController = async (req, res) => {
     res.json(error);
   }
 };
+
+exports.updateRefundController = async (req, res) => {
+  try {
+    let orderId = req.params.id;
+    const { refundStatus, refundComment } = req.body;
+    const order = await Order.findByIdAndUpdate(orderId, {
+      refundStatus,
+      refundComment,
+    });
+    res.json(order);
+  } catch (error) {
+    res.json(error);
+  }
+};
