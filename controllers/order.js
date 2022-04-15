@@ -73,19 +73,24 @@ exports.updateStatus = async (req, res) => {
     let status = req.params.status;
     let orderId = req.params.id;
 
-    // let updateStatus = await Order.find(
-    //   { _id: orderId }
-    //   // {
-    //   //   status: status,
-    //   // }
-    // );
     const updateStatus = await Order.findByIdAndUpdate(orderId, {
       status: status,
     });
-
     res.json(updateStatus);
+  } catch (error) {
+    res.json(error);
+  }
+};
 
-    // console.log(updateStatus);
+exports.updateFeedbackController = async (req, res) => {
+  try {
+    let orderId = req.params.id;
+    const { feedbackStatus, feedbackComment } = req.body;
+    const order = await Order.findByIdAndUpdate(orderId, {
+      feedbackStatus,
+      feedbackComment,
+    });
+    res.json(order);
   } catch (error) {
     res.json(error);
   }
