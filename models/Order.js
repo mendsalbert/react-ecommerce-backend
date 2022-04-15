@@ -42,6 +42,18 @@ const OrderSchema = mongoose.Schema({
       ref: "User",
     },
   ],
+  feedbackStatus: {
+    type: String,
+  },
+  feedbackComment: {
+    type: String,
+  },
+  refundStatus: {
+    type: String,
+  },
+  refundComment: {
+    type: String,
+  },
 });
 
 module.exports = mongoose.model("Order", OrderSchema);
