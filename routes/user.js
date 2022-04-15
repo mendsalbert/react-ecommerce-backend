@@ -17,6 +17,7 @@ const {
 
 router.post("/", userSignInValidator, runValidation, registerUserController);
 router.get("/all-users", getAllUsersController);
+router.get("/get-user", getAllUsersController);
 // router.post("/", registerUserController);
 //@route -- POST api/user/forget-password
 //@desc -- Forget password of a user

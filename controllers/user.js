@@ -78,7 +78,18 @@ exports.forgetPasswordController = async (req, res) => {
 
 exports.getAllUsersController = async (req, res) => {
   try {
+    // let id = req.user.id;
     let allusers = await User.find({});
+    res.json(allusers);
+  } catch (error) {
+    res.json(error);
+  }
+};
+
+exports.getSingleUsersController = async (req, res) => {
+  try {
+    let id = req.user.id;
+    let allusers = await User.find({ _id: id });
     res.json(allusers);
   } catch (error) {
     res.json(error);
