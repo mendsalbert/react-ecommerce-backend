@@ -26,9 +26,7 @@ exports.registerUserController = async (req, res) => {
 
     let salt = await bcrypt.genSalt(12);
     user.password = await bcrypt.hash(password, salt);
-
     const savedUser = await user.save();
-
     //payload for jwt(user_id)
     const payLoad = {
       user: {

@@ -7,6 +7,7 @@ const config = require("config");
 exports.userLogInController = async (req, res) => {
   try {
     const { email, password } = req.body;
+    // console.log(req.body);
     let user = await User.findOne({ email });
     if (!user) {
       const error = new Error("A user with this email doesnt exist");
