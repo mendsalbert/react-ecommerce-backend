@@ -42,7 +42,7 @@ exports.getUserOrders = async (req, res) => {
   try {
     // console.log(req.user.id);
     const userId = req.user.id;
-    const orders = await Order.find({ user: userId });
+    const orders = await Order.find({ user: userId }).sort({ date: -1 });
     res.json(orders);
   } catch (error) {
     res.json(error);
